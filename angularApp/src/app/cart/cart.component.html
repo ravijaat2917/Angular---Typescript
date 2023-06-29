@@ -1,10 +1,26 @@
 <div class="m-3">
-    <h1>{{componentName}}</h1>
-    <input [value]="item" class="form-control" type="text" (input)="getItem($event)">
-    <button [disabled]="btnDisabled" (click)="addToCart()" class="btn btn-success w-100">Add</button>
-    <ul class="list-group">
-        <li class="list-group-item">
-            {{cart.join('  |  ')}}
-        </li>
-    </ul>
+  <h1>{{ componentName }}</h1>
+  <input
+    [value]="item"
+    class="form-control"
+    type="text"
+    (input)="getItem($event)"
+  />
+
+  <button
+    [disabled]="btnDisabled"
+    (click)="addToCart()"
+    class="btn btn-success w-100"
+  >
+    Add
+  </button>
+  <p *ngIf="!cart.length" class="alert alert-danger">Cart is Empty</p>
+  <ul *ngIf="cart.length" class="list-group">
+    <!-- <li class="list-group-item mt-3">
+      {{ cart.join("  |  ") }}
+    </li> -->
+    <li class="list-group-item" *ngFor="let item of cart; let i = index">
+      {{ i + 1 }}. {{ item }}
+    </li>
+  </ul>
 </div>
